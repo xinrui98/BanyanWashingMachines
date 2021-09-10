@@ -1,6 +1,6 @@
 # Description
 
-Banyan Washing Machines Tracker is a initiative by the 5th Banyan Hall Council that aims to improve convenience and campus experience for Banyan Hall residents.
+Banyan Washing Machines Tracker is an initiative by the 5th Banyan Hall Council that aims to improve convenience and campus experience for Banyan Hall residents.
 The tracker utilises React as front-end and Firebase Realtime Database for back-end. Vibration detection hardware will be used to identify if a washing machine is in use, communicating with Firebase and reflecting real time changes in the React web app.
 
 ## Check out the webpage
