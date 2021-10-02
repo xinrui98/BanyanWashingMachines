@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link , useHistory } from 'react-router-dom'
+import classes from "./header.module.css"
+import BuildingsCropped from "../Assets/BuildingsCropped.png"
 
 export const Header = (props) => {
 
@@ -12,10 +14,10 @@ export const Header = (props) => {
 
     }
     return (
-        <div style={{backgroundColor:"black",height:"100px",width:"100%"}}>
+        <div style={{backgroundImage:`url(${BuildingsCropped})`,height:"175px",width:"100%"}}>
             <br/>
             <div style={{display:'flex',justifyContent:"space-between",alignItems:"center"}}>
-                <h1 style={{color:"white",cursor:"pointer"}} onClick={gotohome}>Banyan Hall Washing Machines</h1>
+                <h1 className={classes.banyan} onClick={gotohome}>Banyan <br/>Washing Machines</h1>
                 <Link to='addwashingmachine' className="btn btn-primary">Add Washing Machines</Link>
             </div>
         </div>
