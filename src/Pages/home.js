@@ -5,6 +5,7 @@ import Header from "../Components/header";
 import firebase from "../Config/firebase";
 // import Background from "../Assets/Background.png"
 import LoadingModal from "../Components/LoadingModal"
+import classes from "./home.module.css"
 
 function Home(props) {
   const [data, setData] = useState([]);
@@ -210,7 +211,8 @@ function Home(props) {
   };
 
   return (
-    <div > 
+    <div className={classes.background}> 
+      {/* style={{background: "rgba(255, 231, 175, 0.29)"}} */}
       {/* style={{backgroundImage:`url(${Background})`}} */}
       <Header />
       <LoadingModal isLoading={loading} />
@@ -220,64 +222,81 @@ function Home(props) {
       <br />
       <br />
 
-      <center>
+      <center className={classes.table}>
         <div
-          style={{ width: "90%", border: "2px solid black", padding: "10px" }}
+          style={{ width: "90%", border: "2px solid black", padding: "10px" }} 
         >
           {/* the below code will render data from firebase into table */}
           <table className="table table-responsive">
             <tbody>
+              <td className={classes.labelX}></td>
+              <td className={classes.label}>Block A</td>
+              <td className={classes.label}>Block B</td>
               {data.map((v, i) => {
                 return (
                   <>
-                    <tr key={i}>
-                      <td>{"Level " + v.rowname}</td>
-                      <td>{v.w1}</td>
+                    <tr classname={classes.row} key={i}>
+                      {/* <button> */}
+                      <td className={classes.level} >{"Level " + v.rowname}</td>
+                      {/* <td>{v.w1}</td> */}
                       <td>
                         {v.w1status === true ? (
                           <>
-                            <input
+                            <button className={classes.btnUSE} onClick={() =>changestatus(v.key, true, "w1status")}>
+                              IN USE
+                            </button>
+                            {/* <input
                               type="checkbox"
                               onChange={() =>
                                 changestatus(v.key, true, "w1status")
                               }
                               checked
-                            />
+                            /> */}
                           </>
                         ) : (
                           <>
-                            <input
+                            <button className={classes.btnFREE} onClick={() =>changestatus(v.key, false, "w1status")}>
+                              FREE
+                            </button>
+                            {/* <input
                               type="checkbox"
                               onChange={() =>
                                 changestatus(v.key, false, "w1status")
                               }
-                            />
+                            /> */}
                           </>
                         )}
                       </td>
-                      <td>{v.w2}</td>
+                      {/* <td>{v.w2}</td> */}
                       <td>
                         {v.w2status === true ? (
                           <>
-                            <input
+                            <button className={classes.btnUSE} onClick={() =>changestatus(v.key, true, "w2status")}>
+                              IN USE
+                            </button>
+                            {/* <input
                               type="checkbox"
                               onChange={() =>
                                 changestatus(v.key, true, "w2status")
                               }
                               checked
-                            />
+                            /> */}
                           </>
                         ) : (
                           <>
-                            <input
+                            <button className={classes.btnFREE} onClick={() =>changestatus(v.key, false, "w2status")}>
+                              FREE
+                            </button>
+                            {/* <input
                               type="checkbox"
                               onChange={() =>
                                 changestatus(v.key, false, "w2status")
                               }
-                            />
+                            /> */}
                           </>
                         )}
                       </td>
+                      {/* </button> */}
                       {/* <td>{v.w3}</td>
                       <td>
                         {v.w3status === true ? (

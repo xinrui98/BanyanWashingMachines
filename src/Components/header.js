@@ -17,7 +17,7 @@ export const Header = (props) => {
         <div style={{backgroundImage:`url(${BuildingsCropped})`,height:"175px",width:"100%"}}>
             <br/>
             <div style={{display:'flex',justifyContent:"space-between",alignItems:"center"}}>
-                <h1 className={classes.banyan} onClick={gotohome}>Banyan <br/>Washing Machines</h1>
+                <h1 className={classes.banyan} onClick={gotohome}>Banyan <br/>Dryer Availabilty</h1>
                 {/* <Link to='addwashingmachine' className="btn btn-primary">Add Washing Machines</Link> */}
             </div>
         </div>
