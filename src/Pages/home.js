@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { set_user } from "../Store/action";
 import Header from "../Components/header";
 import firebase from "../Config/firebase";
-import Background from "../Assets/Background.png"
+// import Background from "../Assets/Background.png"
+import LoadingModal from "../Components/LoadingModal"
 
 function Home(props) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false); 
 
   // The below code will take data from firebase
 
@@ -26,17 +28,19 @@ function Home(props) {
             w1status: dataVal.washer1.status,
             w2: dataVal.washer2.name,
             w2status: dataVal.washer2.status,
-            w3: dataVal.washer3.name,
-            w3status: dataVal.washer3.status,
-            w4: dataVal.washer4.name,
-            w4status: dataVal.washer4.status,
+            // w3: dataVal.washer3.name,
+            // w3status: dataVal.washer3.status,
+            // w4: dataVal.washer4.name,
+            // w4status: dataVal.washer4.status,
           });
         });
         console.log(newUserState);
         setData(newUserState);
         setTimeout(() => {
           console.log("This function will run after 60 seconds");
+          setLoading(true);
           window.location.reload();
+          // setLoading(false);
         }, 60000);
       });
   }, []);
@@ -61,7 +65,9 @@ function Home(props) {
             status: false,
           });
         });
-      window.location.reload();
+        setLoading(true);
+        window.location.reload();
+        // setLoading(false);
     } else if (status === true && washer === "w2status") {
       firebase
         .database()
@@ -80,46 +86,47 @@ function Home(props) {
             status: false,
           });
         });
+        setLoading(true);
+        window.location.reload();
+        // setLoading(false);
+    // } else if (status === true && washer === "w3status") {
+    //   firebase
+    //     .database()
+    //     .ref("data")
+    //     .child(key)
+    //     .child("washer3")
+    //     .on("value", (snapshot) => {
+    //       const dataVal = snapshot.val();
 
-      window.location.reload();
-    } else if (status === true && washer === "w3status") {
-      firebase
-        .database()
-        .ref("data")
-        .child(key)
-        .child("washer3")
-        .on("value", (snapshot) => {
-          const dataVal = snapshot.val();
+    //       firebase.database().ref("data").child(key).child("washer3").set({
+    //         key: key,
 
-          firebase.database().ref("data").child(key).child("washer3").set({
-            key: key,
+    //         rowname: dataVal.rowname,
+    //         name: dataVal.name,
 
-            rowname: dataVal.rowname,
-            name: dataVal.name,
+    //         status: false,
+    //       });
+    //     });
+    //   window.location.reload();
+    // } else if (status === true && washer === "w4status") {
+    //   firebase
+    //     .database()
+    //     .ref("data")
+    //     .child(key)
+    //     .child("washer4")
+    //     .on("value", (snapshot) => {
+    //       const dataVal = snapshot.val();
 
-            status: false,
-          });
-        });
-      window.location.reload();
-    } else if (status === true && washer === "w4status") {
-      firebase
-        .database()
-        .ref("data")
-        .child(key)
-        .child("washer4")
-        .on("value", (snapshot) => {
-          const dataVal = snapshot.val();
+    //       firebase.database().ref("data").child(key).child("washer4").set({
+    //         key: key,
 
-          firebase.database().ref("data").child(key).child("washer4").set({
-            key: key,
+    //         rowname: dataVal.rowname,
+    //         name: dataVal.name,
 
-            rowname: dataVal.rowname,
-            name: dataVal.name,
-
-            status: false,
-          });
-        });
-      window.location.reload();
+    //         status: false,
+    //       });
+    //     });
+    //   window.location.reload();
     } else if (status === false && washer === "w1status") {
       firebase
         .database()
@@ -138,7 +145,9 @@ function Home(props) {
             status: true,
           });
         });
+      setLoading(true);
       window.location.reload();
+      // setLoading(false);
     } else if (status === false && washer === "w2status") {
       firebase
         .database()
@@ -157,49 +166,54 @@ function Home(props) {
             status: true,
           });
         });
+      setLoading(true);
       window.location.reload();
-    } else if (status === false && washer === "w3status") {
-      firebase
-        .database()
-        .ref("data")
-        .child(key)
-        .child("washer3")
-        .on("value", (snapshot) => {
-          const dataVal = snapshot.val();
+      // setLoading(false);
+      }
+    // } else if (status === false && washer === "w3status") {
+    //   firebase
+    //     .database()
+    //     .ref("data")
+    //     .child(key)
+    //     .child("washer3")
+    //     .on("value", (snapshot) => {
+    //       const dataVal = snapshot.val();
 
-          firebase.database().ref("data").child(key).child("washer3").set({
-            key: key,
-            rowname: dataVal.rowname,
-            name: dataVal.name,
+    //       firebase.database().ref("data").child(key).child("washer3").set({
+    //         key: key,
+    //         rowname: dataVal.rowname,
+    //         name: dataVal.name,
 
-            status: true,
-          });
-        });
-      window.location.reload();
-    } else if (status === false && washer === "w4status") {
-      firebase
-        .database()
-        .ref("data")
-        .child(key)
-        .child("washer4")
-        .on("value", (snapshot) => {
-          const dataVal = snapshot.val();
+    //         status: true,
+    //       });
+    //     });
+    //   window.location.reload();
+    // } else if (status === false && washer === "w4status") {
+    //   firebase
+    //     .database()
+    //     .ref("data")
+    //     .child(key)
+    //     .child("washer4")
+    //     .on("value", (snapshot) => {
+    //       const dataVal = snapshot.val();
 
-          firebase.database().ref("data").child(key).child("washer4").set({
-            key: key,
-            rowname: dataVal.rowname,
-            name: dataVal.name,
+    //       firebase.database().ref("data").child(key).child("washer4").set({
+    //         key: key,
+    //         rowname: dataVal.rowname,
+    //         name: dataVal.name,
 
-            status: true,
-          });
-        });
-      window.location.reload();
-    }
+    //         status: true,
+    //       });
+    //     });
+    //   window.location.reload();
+    // }
   };
 
   return (
-    <div style={{backgroundImage:`url(${Background})`}}>
+    <div > 
+      {/* style={{backgroundImage:`url(${Background})`}} */}
       <Header />
+      <LoadingModal isLoading={loading} />
 
       <br />
       <br />
@@ -264,7 +278,7 @@ function Home(props) {
                           </>
                         )}
                       </td>
-                      <td>{v.w3}</td>
+                      {/* <td>{v.w3}</td>
                       <td>
                         {v.w3status === true ? (
                           <>
@@ -309,7 +323,7 @@ function Home(props) {
                             />
                           </>
                         )}
-                      </td>
+                      </td> */}
                     </tr>
                   </>
                 );

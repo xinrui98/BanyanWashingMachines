@@ -4,7 +4,7 @@
     /* padding-bottom: 0.25em; */
     line-height: 155%;
     font-size: clamp(2.5rem, 7vh, 7vh);
-    background: -webkit-linear-gradient(135deg, rgba(255, 237, 142, 1), rgba(255, 184, 78, 1));
+    background: -webkit-linear-gradient(135deg, rgb(250, 237, 171), rgb(252, 166, 39));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     cursor:"pointer"

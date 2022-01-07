@@ -18,7 +18,7 @@ export const Header = (props) => {
             <br/>
             <div style={{display:'flex',justifyContent:"space-between",alignItems:"center"}}>
                 <h1 className={classes.banyan} onClick={gotohome}>Banyan <br/>Washing Machines</h1>
-                <Link to='addwashingmachine' className="btn btn-primary">Add Washing Machines</Link>
+                {/* <Link to='addwashingmachine' className="btn btn-primary">Add Washing Machines</Link> */}
             </div>
         </div>
     )
