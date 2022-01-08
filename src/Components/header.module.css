@@ -3,7 +3,7 @@
     padding-left: 1.75rem;
     /* padding-bottom: 0.25em; */
     line-height: 155%;
-    font-size: clamp(2.5rem, 7vh, 7vh);
+    font-size: clamp(1.5rem, 7vh, 2.5rem);
     background: -webkit-linear-gradient(135deg, rgb(250, 237, 174), rgb(250, 151, 4));
     background-clip: text;
     -webkit-text-fill-color: transparent;

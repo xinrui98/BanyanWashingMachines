@@ -1,6 +1,6 @@
-.background {
-    background: rgba(255, 231, 175, 0.29);
-}
+/* .background {
+    background: rgba(255, 231, 175, 0.30);
+} */
 
 .table {
     padding-bottom: 5rem;
@@ -57,7 +57,7 @@
 .btnFREE {
     width: 15vw;
     height: 5vh;
-    background: rgba(255, 231, 175, 0.29);
+    background: rgba(255, 231, 175, 0.35);
     /* background: rgb(252, 151, 0); */
     color: black;
     border: none;
