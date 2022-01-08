@@ -6,6 +6,7 @@ import firebase from "../Config/firebase";
 // import Background from "../Assets/Background.png"
 import LoadingModal from "../Components/LoadingModal"
 import classes from "./home.module.css"
+import * as ReactBootStrap from 'react-bootstrap'
 
 function Home(props) {
   const [data, setData] = useState([]);
@@ -14,10 +15,12 @@ function Home(props) {
   // The below code will take data from firebase
 
   useEffect(() => {
+    setLoading(true);
     firebase
       .database()
       .ref("data")
-      .on("value", (snapshot) => {
+      .on("value", async (snapshot) => {
+        
         let newUserState = [];
         snapshot.forEach((data) => {
           const dataVal = data.val();
@@ -34,21 +37,24 @@ function Home(props) {
             // w4: dataVal.washer4.name,
             // w4status: dataVal.washer4.status,
           });
-        });
+        }); 
+        console.log("test");
         console.log(newUserState);
-        setData(newUserState);
-        setTimeout(() => {
-          console.log("This function will run after 60 seconds");
-          setLoading(true);
-          window.location.reload();
-          // setLoading(false);
-        }, 60000);
+        await setData(newUserState);
+        setLoading(false);
+        
+        // setTimeout(() => {
+        //   console.log("This function will run after 60 seconds");
+        //   setLoading(true);
+        //   window.location.reload();
+        //   // setLoading(false);
+        // }, 60000);
       });
   }, []);
 
   // the below function will make changes to status based on checkbox change
 
-  const changestatus = (key, status, washer) => {
+  const changestatus = async (key, status, washer) => {
     if (status === true && washer === "w1status") {
       firebase
         .database()
@@ -66,8 +72,8 @@ function Home(props) {
             status: false,
           });
         });
-        setLoading(true);
         window.location.reload();
+        
         // setLoading(false);
     } else if (status === true && washer === "w2status") {
       firebase
@@ -87,7 +93,7 @@ function Home(props) {
             status: false,
           });
         });
-        setLoading(true);
+        // setLoading(true);
         window.location.reload();
         // setLoading(false);
     // } else if (status === true && washer === "w3status") {
@@ -146,7 +152,7 @@ function Home(props) {
             status: true,
           });
         });
-      setLoading(true);
+      // setLoading(true);
       window.location.reload();
       // setLoading(false);
     } else if (status === false && washer === "w2status") {
@@ -167,7 +173,7 @@ function Home(props) {
             status: true,
           });
         });
-      setLoading(true);
+      // setLoading(true);
       window.location.reload();
       // setLoading(false);
       }
@@ -215,12 +221,16 @@ function Home(props) {
       {/* style={{background: "rgba(255, 231, 175, 0.29)"}} */}
       {/* style={{backgroundImage:`url(${Background})`}} */}
       <Header />
-      <LoadingModal isLoading={loading} />
+      {/* {<ReactBootStrap.Spinner animation="border"/>} */}
+      
 
       <br />
       <br />
       <br />
       <br />
+      {loading? <LoadingModal isLoading={loading} />:
+      // <LoadingModal isLoading={loading} />
+      
 
       <center className={classes.table}>
         <div
@@ -351,6 +361,7 @@ function Home(props) {
           </table>
         </div>
       </center>
+      }
     </div>
   );
 }
