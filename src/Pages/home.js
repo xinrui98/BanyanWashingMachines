@@ -217,7 +217,7 @@ function Home(props) {
   };
 
   return (
-    <div className={classes.background}> 
+    <div> 
       {/* style={{background: "rgba(255, 231, 175, 0.29)"}} */}
       {/* style={{backgroundImage:`url(${Background})`}} */}
       <Header />
