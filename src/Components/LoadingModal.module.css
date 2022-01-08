@@ -39,7 +39,7 @@
 
 .text:after {
     content: " .";
-	animation: dots 1s steps(5, end) infinite;position: absolute;top: 30%;
+	animation: dots 1s steps(5, end) infinite;position: absolute;top: 20%;
 	left: 50%;
 	font-size: 50px;
 	transform: translate(-50%,-50%);
